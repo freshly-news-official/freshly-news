@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  #devise_for :users
-    root 'fresh#index'
+    devise_for :users
+
+    root'fresh#index'
 
     post '/search'  => 'fresh#search'
     get '/news/:news_category'  => 'fresh#news'
