@@ -38,7 +38,7 @@ class FreshController < ActionController::Base
         if n != [] then
           n.each do |temp|
             news_item = {:title => temp[:title], :description => temp[:description],
-                        :rating => temp[:rating], :votes => temp[:votes]}
+                        :views => temp[:views], :votes => temp[:votes]}
             @news.push(news_item)
           end
         end
