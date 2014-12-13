@@ -36,4 +36,15 @@ class FreshController < ActionController::Base
     render json: @results
   end 
 
+	def top_news
+    @results = []
+
+    News.all.order(:views, :votes).limit(10).each do |item|
+      @results.push({'title' => item.title, 'url' => item.url, 
+                    'description' => item.description})
+    end
+
+    render json: @results
+  end
+
 end
