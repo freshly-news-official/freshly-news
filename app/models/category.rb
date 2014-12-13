@@ -1,3 +1,4 @@
 class Category < ActiveRecord::Base
-  belongs_to :site
+  belongs_to :website
+  has_many :news
 end
