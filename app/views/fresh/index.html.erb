@@ -58,11 +58,21 @@
            <p>This page will grow as we add more and more components from Bootstrap...</p>      
         </div>
 
-         <div class="row" >
+         <div class="row" ng-show='show_top_news'>
                <div class="col-md-3 news" ng-repeat="news_show in news">
                        
                        <div>
                            <a href="{{news_show.url}}">{{news_show.title}}</a>
+                       </div>
+                           
+                       <div class="clearfix visible-lg"></div>
+               </div>
+           </div>
+           <div class="row" ng-hide='show_top_news'>
+               <div class="col-md-3 news" ng-repeat="news_category_show in news_category">
+                       
+                       <div>
+                           <a href="{{news_category_show.url}}">{{news_category_show.title}}</a>
                        </div>
                            
                        <div class="clearfix visible-lg"></div>
