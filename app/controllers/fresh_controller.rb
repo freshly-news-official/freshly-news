@@ -13,27 +13,33 @@ class FreshController < ActionController::Base
     @results = []
 
     News.where('title like ?', '%' + search_term + '%').each do |news|
-      @results.push({'title' => news.title, 'url' => news.url })
+      @results.push({'title' => news.title, 
+                    'url' => news.url , 
+                    'description' => news.description})
     end
 
     render json: @results
   end 
 
+
   def news
     raw_input = JSON.parse(request.body.read())
 
     news_category = raw_input["news_category"].gsub(/[^a-zA-Z0-9 ]/, "")
-    limit = raw_input["news_category"].gsub(/[^a-zA-Z0-9 ]/, "").to
-    p news_category
-    p limit
+    from = raw_input["from"].to_i
+    to = raw_input["to"].to_i
 
-    @results = []
-
-    News.where('title like ?', '%' + search_term + '%').each do |news|
-      @results.push({'title' => news.title, 'url' => news.url })
+    @news = []
+    categories_ids = Category.where({:nume => news_category})
+    categories_ids.each do |id|
+      n = News.where({:id_category => id})
+      @news += n if n != []
     end
 
-    render json: @results
+    @news.sort_by { |n| n[:ews]} 
+ 
+
+    render json: @news[from..to]
   end 
 
 end
