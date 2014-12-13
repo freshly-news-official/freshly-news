@@ -27,9 +27,13 @@ class FreshController < ActionController::Base
 
     @news = []
     if news_category != "random" then
+      puts "================="
+      p 'here'
+      puts "================="
+
       categories_ids = Category.where({:nume => news_category})
       categories_ids.each do |id|
-        n = News.where({:id_category => id})
+        n = News.where({:category_id => id})
 
         if n != [] then
           n.each do |temp|
@@ -42,6 +46,7 @@ class FreshController < ActionController::Base
       end
     
       @news.sort_by { |n| n[:views]} 
+
     else
       # modify here after growing database
       News.all.order(:views, :votes).each do |item|
