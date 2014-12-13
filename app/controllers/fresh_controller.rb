@@ -36,13 +36,13 @@ class FreshController < ActionController::Base
       @news += n if n != []
     end
 
-    @news.sort_by { |n| n[:ews]} 
+    @news.sort_by { |n| n[:views]} 
  
 
     render json: @news[from..to]
   end 
 
-	def top_news
+  def top_news
     @results = []
 
     News.all.order(:views, :votes).limit(10).each do |item|
