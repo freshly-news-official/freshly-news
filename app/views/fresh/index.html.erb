@@ -21,9 +21,6 @@
               <input type="text" class="form-control" placeholder = "Search", ng-model="search_term"/> 
             <form/>
           </div>
-          <div ng-repeat="search_result in search_results">
-            <a href="{{search_result.url}}">{{search_result.title}}</a>
-          </div>
         </div>
 
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -57,7 +54,12 @@
       <div class="jumbotron">
         <h1>My first Bootstrap website!</h1>      
         <p>This page will grow as we add more and more components from Bootstrap...</p>      
-      </div>
+        <div ng-repeat="search_result in search_results">
+          <div>
+            <a href="{{search_result.url}}">{{search_result.title}}a</a>
+          </div>
+        </div>
+        </div>
 
       <div class="row" >
         <div class="col-md-3 news" >
