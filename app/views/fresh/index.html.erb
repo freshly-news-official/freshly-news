@@ -16,7 +16,10 @@
 
          <div class="inner-addon left-addon menu">
              <i class="glyphicon glyphicon-search"></i>
-             <input type="text" class="form-control" placeholder = "Search" />
+             
+            <form ng-submit='search()'>
+              <input type="text" class="form-control" placeholder = "Search", ng-model='search_term'/> 
+            <form/>
           </div>
         </div>
 
