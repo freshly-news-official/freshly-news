@@ -13,3 +13,33 @@
  *= require_tree .
  *= require_self
  */
+/* enable absolute positioning */
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  padding-top: 17px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+
+.menu {
+	padding-top: 8px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+     }
+
+.test {background-color: green;}
