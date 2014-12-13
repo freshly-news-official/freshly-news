@@ -23,11 +23,7 @@ class FreshController < ActionController::Base
 
 
   def news
-    raw_input = params
-
-    news_category = raw_input[:news_category].gsub(/[^a-zA-Z0-9 ]/, "")
-    from = raw_input[:from].to_i
-    to = raw_input[:to].to_i
+    news_category = params[:news_category].gsub(/[^a-zA-Z0-9 ]/, "")
 
     @news = []
     if news_category != "random" then
@@ -48,7 +44,7 @@ class FreshController < ActionController::Base
       @news.sort_by { |n| n[:views]} 
     else
       # modify here after growing database
-      News.all.order(:views, :votes)[0..-1].each do |item|
+      News.all.order(:views, :votes).each do |item|
       @news.push({'title' => item.title, 'url' => item.url, 
                     'description' => item.description})
       end
@@ -56,7 +52,7 @@ class FreshController < ActionController::Base
     end
  
 
-    render json: @news[from..to]
+    render json: @news
   end 
 
   def top_news
@@ -70,4 +66,10 @@ class FreshController < ActionController::Base
     render json: @results
   end
 
+
+  def categories
+    @categories = Category.uniq.pluck(:nume)
+
+    render json: @categories
+  end
 end
