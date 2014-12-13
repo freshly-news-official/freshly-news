@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="application.css">
   </head>
 
-  <body>
+  <body ng-controller="FreshlyController">
 
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
@@ -17,9 +17,12 @@
          <div class="inner-addon left-addon menu">
              <i class="glyphicon glyphicon-search"></i>
              
-            <form ng-submit='search()'>
-              <input type="text" class="form-control" placeholder = "Search", ng-model='search_term'/> 
+            <form ng-submit="search()">
+              <input type="text" class="form-control" placeholder = "Search", ng-model="search_term"/> 
             <form/>
+          </div>
+          <div ng-repeat="search_result in search_results">
+            <a href="{{search_result.url}}">{{search_result.title}}</a>
           </div>
         </div>
 
@@ -75,6 +78,7 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+    <script src="http://dserban.github.io/js/angularjs/angular.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
