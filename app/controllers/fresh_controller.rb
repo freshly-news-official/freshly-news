@@ -23,11 +23,11 @@ class FreshController < ActionController::Base
 
 
   def news
-    raw_input = JSON.parse(request.body.read())
+    raw_input = params
 
-    news_category = raw_input["news_category"].gsub(/[^a-zA-Z0-9 ]/, "")
-    from = raw_input["from"].to_i
-    to = raw_input["to"].to_i
+    news_category = raw_input[:news_category].gsub(/[^a-zA-Z0-9 ]/, "")
+    from = raw_input[:from].to_i
+    to = raw_input[:to].to_i
 
     @news = []
     if news_category != "random" then
@@ -38,7 +38,7 @@ class FreshController < ActionController::Base
         if n != [] then
           n.each do |temp|
             news_item = {:title => temp[:title], :description => temp[:description],
-                        :rating => temp[:rating], :votes => temp[:votes]}
+                        :views => temp[:views], :votes => temp[:votes]}
             @news.push(news_item)
           end
         end
