@@ -2,14 +2,27 @@ var app = angular.module('app', []);
 
 app.controller('FreshlyController', ['$scope', '$http', function($scope, $http) {
    $scope.search_results = [];
+   $scope.news = [];
 
     $scope.search = function() {
-      /* the $http service allows you to make arbitrary ajax requests.
-       * in this case you might also consider using angular-resource and setting up a
-       * User $resource. */
        /*/search este endpoint-ul definit de baieti*/
-      $http.get('/search', { 'search_term': $scope.search_term },
-        function(response) { $scope.search_results = response; },
-        function(failure) { console.log("failed :(", failure); });
+    $http.post('/search', { 'search_term': $scope.search_term })
+      .success(function(data, status, headers, config) {
+        $scope.search_results = data;
+      })
+      .error(function(data, status, headers, config) {
+        console.log("failed :(", failure);
     });
-  });
+  };
+
+  $scope.show = function() {
+       /*/search este endpoint-ul definit de baieti*/
+    $http.post('/news', { 'news_categories': 'random', 'from':0, 'to':10 })
+      .success(function(data, status, headers, config) {
+        $scope.news = data;
+      })
+      .error(function(data, status, headers, config) {
+        console.log("failed :(", failure);
+    });
+  };
+}]);
