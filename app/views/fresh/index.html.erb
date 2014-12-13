@@ -14,19 +14,11 @@
       <div class="container-fluid"  >
         <div class="navbar-header" >
 
-  <body ng-controller="FreshlyController">
-
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-
-
          <div class="inner-addon left-addon menu">
              <i class="glyphicon glyphicon-search"></i>
-             
-            <form ng-submit="search()">
-              <input type="text" class="form-control" placeholder = "Search", ng-model="search_term"/> 
-            <form/>
+              <form ng-submit="search()">
+               <input type="text" ng-model="search_term" class="form-control" placeholder = "Search" />
+             </form>
           </div>
         </div>
 
@@ -62,33 +54,23 @@
       <div class="jumbotron">
         <h1>My first Bootstrap website!</h1>      
         <p>This page will grow as we add more and more components from Bootstrap...</p>      
-
       </div>
 
       <div class="row" >
         <div class="col-md-3 news" >
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <img src="" alt="Alternative" >
-
-        <div ng-repeat="search_result in search_results">
+          <div ng-repeat="search_result in search_results">
           <div>
             <a href="{{search_result.url}}">{{search_result.title}}</a>
           </div>
         </div>
-        </div>
-
-      <div class="row" >
-        <div class="col-md-3 news" ng-repeat="news_show in news">
-          <a href="{{news_show.url}}">{{news_show.title}}</a>
-
-        </div>
+      </div>
         
         
         <div class="clearfix visible-lg"></div>
       </div>
     </div>
 
-    <div class="footer">        
+      <div class="footer">        
         <h3>City Gallery</h3>
     </div>
 
@@ -96,8 +78,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <script src="http://dserban.github.io/js/angularjs/angular.js"></script>
-    <script src="app.js"></script>
-
+  
   </body>
 </html>
