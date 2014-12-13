@@ -5,7 +5,7 @@ app.controller('FreshlyController', ['$scope', '$http', function($scope, $http) 
    $scope.news = [];
 
 
-    $http.get('/news', { 'news_categories': 'random', 'from':0, 'to':10 })
+    $http.get('/news/random')
       .success(function(data, status, headers, config) {
         $scope.news = data;
       })
