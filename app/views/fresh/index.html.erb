@@ -56,23 +56,14 @@
         <p>This page will grow as we add more and more components from Bootstrap...</p>      
         <div ng-repeat="search_result in search_results">
           <div>
-            <a href="{{search_result.url}}">{{search_result.title}}a</a>
+            <a href="{{search_result.url}}">{{search_result.title}}</a>
           </div>
         </div>
         </div>
 
       <div class="row" >
-        <div class="col-md-3 news" >
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-        <div class="col-md-3 news" > 
-          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-        <div class="col-md-3 news " > 
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-        </div>
-         <div class="col-md-3 news " > 
-          <p>vshvlabalbbfjvnfbjdbs</p>
+        <div class="col-md-3 news" ng-repeat="news_show in news">
+          <a href="{{news_show.url}}">{{news_show.title}}</a>
         </div>
         
         <div class="clearfix visible-lg"></div>
