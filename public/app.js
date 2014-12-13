@@ -4,6 +4,15 @@ app.controller('FreshlyController', ['$scope', '$http', function($scope, $http) 
    $scope.search_results = [];
    $scope.news = [];
 
+
+    $http.get('/news', { 'news_categories': 'random', 'from':0, 'to':10 })
+      .success(function(data, status, headers, config) {
+        $scope.news = data;
+      })
+      .error(function(data, status, headers, config) {
+        console.log("failed :(", failure);
+     });
+    
     $scope.search = function() {
        /*/search este endpoint-ul definit de baieti*/
     $http.post('/search', { 'search_term': $scope.search_term })
@@ -15,14 +24,5 @@ app.controller('FreshlyController', ['$scope', '$http', function($scope, $http) 
     });
   };
 
-  $scope.show = function() {
-       /*/search este endpoint-ul definit de baieti*/
-    $http.post('/news', { 'news_categories': 'random', 'from':0, 'to':10 })
-      .success(function(data, status, headers, config) {
-        $scope.news = data;
-      })
-      .error(function(data, status, headers, config) {
-        console.log("failed :(", failure);
-    });
-  };
+  
 }]);
