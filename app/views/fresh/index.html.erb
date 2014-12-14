@@ -23,11 +23,12 @@
             </div>
         </div>
 
-
+         
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-          <span class="icon-bar"></span>                
+          <span class="icon-bar"></span>
+                         
         </button>        
 
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -35,20 +36,17 @@
             <li class="active"><a href="#" ng-click="news_items('/news/random');" style="width:160px; text-align:center;">Home</a></li>
             <li class="dropdown" > 
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width:160px; text-align:center;">Categories 
-            <li class="active"><a ng-click="show_home()" href="#" style="width:160px; text-align:center;">Home</a></li>
-            <li class="dropdown" > 
-              <a class="dropdown-toggle dropdown:hover " data-toggle="dropdown" href="#" style="width:160px; text-align:center;color:white;">Categories 
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
                 <li ng-repeat="category in categories">
                   <a href="#" ng-click="news_items('/news/' + category);">{{category}}</a>
-                  <a href="#" ng-click="show_category(category); $event.preventDefault(); $event.stopPropagation();">{{category}}</a>
                 </li> 
               </ul>
             </li>           
           </ul>
-         <ul class="nav navbar-nav navbar-right">
+
+          <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
               <li><div style="{text-color:'white'}" >Signed in as... <%= current_user.email %></div><li>
               <li>                  
@@ -74,7 +72,8 @@
                 <% end %>
               </li>
             <% end %>
-          </ul>  
+          </ul>
+
         </div>
       </div>
     </nav>
@@ -93,23 +92,6 @@
       </div>
 
       <div class="row" ng-hide="show_items" style="margin-left: 1px;">
-      <div class="row" ng-show="show_bool_category" style="margin-left: 1px;">
-        <div class="col-md-3 col-xs-11 news" ng-repeat="news_category_show in news_category">
-          <div>
-            <a href="{{news_category_show.url}}">{{news_category_show.title}}</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="row" ng-show="show_all" style="margin-left: 1px;">
-        <div class="col-md-3 col-xs-11 news" ng-repeat="news_elem_all in news_all">
-          <div>
-            <a href="{{news_elem_all.url}}">{{news_elem_all.title}}</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="row" ng-show="show_search" style="margin-left: 1px;">
         <div class="col-md-3 col-xs-11 news" ng-repeat="search_result in search_results">
           <div>
             <a href="{{search_result.url}}">{{search_result.title}}</a>
@@ -125,9 +107,6 @@
         <div>
           <a href="#" style="margin-right:85px;"> Show All </a>
       </div>
-    <ul class="pager">
-      <li ng-click="show_all()">
-        <a href="#" style="margin-right:85px;"> Show All </a>
       </li>
     </ul>
 
