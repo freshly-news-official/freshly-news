@@ -77,6 +77,7 @@ app.controller('FreshlyController', ['$scope', '$http', function($scope, $http) 
        /*/search este endpoint-ul definit de baieti*/
     $http.get('/news/all')
       .success(function(data, status, headers, config) {
+        console.log('am fost aici');
         $scope.news_all = data;
         $scope.show_bool_category = false;
         $scope.show_top_news = false;
@@ -88,5 +89,9 @@ app.controller('FreshlyController', ['$scope', '$http', function($scope, $http) 
         console.log("failed :(");
     });
   };
+
+  $scope.retrieve_news_all = function() {
+    return $scope.news_all;
+  }
 
 }]);
