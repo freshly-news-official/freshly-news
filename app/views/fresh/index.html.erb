@@ -68,7 +68,8 @@
       <div class="row " ng-show="show_items" style="margin-left: 1px;">
         <div class="col-md-3 col-xs-11 news " ng-repeat="news_show in retrieve_news_items_to_show()" >
           <div>
-            <a href="{{news_show.url}}">{{news_show.title}}</a>
+            <a href="{{news_show.url}}">{{news_show.title | limitTo : 50}}</a>
+            <img src="{{news_show.tag_image}}" style="width:100%">
           </div>
         </div> 
       </div>
