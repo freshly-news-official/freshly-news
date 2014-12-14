@@ -113,7 +113,7 @@ class FreshController < ActionController::Base
 
   def categories
     @categories = Category.uniq.pluck(:nume)
-
+    @categories += ["random"]
     render json: @categories
   end
 end
