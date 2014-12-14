@@ -3,6 +3,8 @@ require 'json'
 
 class FreshController < ActionController::Base
 
+  MAX_NEWS = 12
+
 	def index
 	end
 
@@ -18,46 +20,59 @@ class FreshController < ActionController::Base
                     'description' => news.description})
     end
 
-    render json: @results
+    render json: @results[0...MAX_NEWS]
   end 
 
 
   def news
+
     news_category = params[:news_category].gsub(/[^a-zA-Z0-9 ]/, "")
 
     @news = []
     if news_category != "random" then
-      puts "================="
-      p 'here'
-      puts "================="
+
+      showed_news = 0;
 
       categories_ids = Category.where({:nume => news_category})
       categories_ids.each do |id|
+        
         n = News.where({:category_id => id})
 
         if n != [] then
+          showed_news += 1
+
           n.each do |temp|
             news_item = {:title => temp[:title], :description => temp[:description],
                         :views => temp[:views], :votes => temp[:votes]}
             @news.push(news_item)
           end
+
+          if (showed_news == max_news)
+            break
+          end
         end
-        
       end
     
       @news.sort_by { |n| n[:views]} 
 
     else
+      showed_news = 0
+
       # modify here after growing database
       News.all.order(:views, :votes).each do |item|
-      @news.push({'title' => item.title, 'url' => item.url, 
+        showed_news += 1
+        @news.push({'title' => item.title, 'url' => item.url, 
                     'description' => item.description})
+
+        if (showed_news == max_news)
+          break
+        end
       end
 
     end
- 
 
-    render json: @news
+    render json: @news[0...MAX_NEWS]
+
   end 
 
   def top_news
