@@ -4,7 +4,7 @@ require 'json'
 class FreshController < ActionController::Base
 
   MAX_NEWS = 12
-  MAX_NEWS_PER_CATEGORY = 3
+  MAX_NEWS_PER_CATEGORY = 1
 
 	def index
 	end
@@ -37,7 +37,8 @@ class FreshController < ActionController::Base
       categories = Category.where({:nume => news_category})
       categories.each do |category|
         
-        n = News.where({:category_id => category[:id]})
+        n = News.where({:category_id => category[:id]}).order(:created_at,
+                        :views, :rating)
 
         if n != [] and n != nil then
                      n.each do |temp|
@@ -66,28 +67,28 @@ class FreshController < ActionController::Base
       if (current_user != nil)
         preferences = User.find_by(:id => current_user[:id])[:preferences]
         preferred_categories = preferences.split(',')
+      else
+        preferred_categories = Category.uniq.pluck(:nume)
       end
 
       # modify here after growing database
-      News.all.order(:date, :views, :votes).each do |item|
-        category = Category.find_by({:id => item[:category_id]})
-        if category != [] and category != nil then
-          showed_news += 1
+      showed_category = 0
+      preferred_categories.each do |categorie|
+        Category.where(:nume => categorie).each do |c|
+          News.where(:category_id => c[:id]).order(:created_at, :views,
+          :votes).limit(MAX_NEWS_PER_CATEGORY).each do |item|
           @news.push({'title' => item.title, 'url' => item.url, 
                       'description' => item.description, 
-                      'news_category' => category[:nume]
+                      'news_category' => c[:nume]
                    })
+            end
+          end
         end
 
-        if (showed_news == MAX_NEWS)
-          render json: @news
-          return
-        end
-      end
     elsif news_category == "all"
     
       @news = []
-      News.all().order(:views, :votes).each do |item|
+      News.all().order(:created_at, :views, :votes).each do |item|
         category = Category.find_by({:id => item[:category_id]})
         if category != [] and category != nil then
           @news.push({'title' => item.title, 'url' => item.url, 
