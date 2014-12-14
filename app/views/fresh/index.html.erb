@@ -46,25 +46,25 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href="#" style="color:white;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="#" style="color:white;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           </ul>
 
         </div>
       </div>
     </nav>
   
-    <div class="container">
+    <div class="container" >
       <div class="jumbotron">
         <img src="http://www.w3schools.com/bootstrap/cinqueterre.jpg" class="img-circle center-block" alt="Cinque Terre" width="304" height="180">
       </div>
 
-      <div class="row" ng-show="show_top_news" style="margin-left: 1px;">
-        <div class="col-md-3 col-xs-11 news" ng-repeat="news_show in news">
+      <div class="row " ng-show="show_top_news" style="margin-left: 1px;">
+        <div class="col-md-3 col-xs-11 news " ng-repeat="news_show in news" >
           <div>
             <a href="{{news_show.url}}">{{news_show.title}}</a>
           </div>
-        </div>
+        </div> 
       </div>
 
       <div class="row" ng-show="show_bool_category" style="margin-left: 1px;">
@@ -90,9 +90,7 @@
           </div>
         </div>
       </div>
-
     </div>
-
 
     <ul class="pager">
       <li ng-click="show_all()">
@@ -102,7 +100,7 @@
 
 
     <div class="footer" >        
-      <a href="#" style="color:white">Terms and Conditions</a>
+      <a href="html/searchResult.html" style="color:white">Terms and Conditions</a>
     </div>
 
     
