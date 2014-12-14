@@ -60,8 +60,9 @@ class FreshController < ActionController::Base
       @news.sort_by { |n| n[:views]} 
 
     elsif news_category == "random" 
+      
+ 
       showed_news = 0
-
       # modify here after growing database
       News.all.order(:views, :votes).each do |item|
         category = Category.find_by({:id => item[:category_id]})
@@ -98,6 +99,9 @@ class FreshController < ActionController::Base
     render json: @news
   end
 
+  def like
+    
+  end
 
   def top_news
     @results = []
@@ -113,7 +117,7 @@ class FreshController < ActionController::Base
 
   def categories
     @categories = Category.uniq.pluck(:nume)
-
+    @categories += ["random"]
     render json: @categories
   end
 end

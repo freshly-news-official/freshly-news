@@ -1,4 +1,4 @@
-c<!DOCTYPE html>
+<!DOCTYPE html>
 <html ng-app = 'app'>
   <head>
     <title>BootstrapCode</title>
@@ -23,6 +23,7 @@ c<!DOCTYPE html>
             </div>
         </div>
 
+
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -31,7 +32,7 @@ c<!DOCTYPE html>
 
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav" >
-            <li class="active"><a href="#" style="width:160px; text-align:center;">Home</a></li>
+            <li class="active"><a ng-click="show_home()" href="#" style="width:160px; text-align:center;">Home</a></li>
             <li class="dropdown" > 
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="width:160px; text-align:center;">Categories 
                 <span class="caret"></span>
@@ -55,40 +56,57 @@ c<!DOCTYPE html>
   
     <div class="container">
       <div class="jumbotron">
-        <img src="http://www.w3schools.com/bootstrap/cinqueterre.jpg" class="img-circle center-block" alt="Cinque Terre" width="304" height="180">
-      </div>
+       <p>1.    Welcome to AdSense!
 
-      <div class="row" ng-show="show_top_news" style="margin-left: 1px;">
-        <div class="col-md-3 col-xs-11 news" ng-repeat="news_show in news">
-          <div>
-            <a href="{{news_show.url}}">{{news_show.title}}</a>
-          </div>
-        </div>
-      </div>
+Thanks for your interest in our search and advertising services (the “Services”)!  
 
-      <div class="row" ng-hide="show_top_news" style="margin-left: 1px;">
-        <div class="col-md-3 col-xs-11 news" ng-repeat="news_category_show in news_category">
-          <div>
-            <a href="{{news_category_show.url}}">{{news_category_show.title}}</a>
-          </div>
-        </div>
+By using our Services, you agree to these terms (the “AdSense Terms”), the AdSense Program Policies and the Google Branding Guidelines  (collectively, the “Agreement”). If ever in conflict, to the extent of such conflict, the AdSense Terms will take precedence over any other terms of the Agreement.  Please read the Agreement carefully.
+
+As used in the Agreement, “you” or “publisher” means the individual or entity using the Services (and/or any individual, entity or successor entity, agency or network acting on your behalf), “we,” “us” or “Google” means Google Inc., and the “parties” means you and Google.  
+
+2.    Access to the Services; AdSense Accounts
+
+Your use of the Services is subject to your creation and our approval of an AdSense account (an “Account”).  We have the right to refuse or limit your access to the Services. By submitting an application to use the Services, if you are an individual, you represent that you are at least 18 years of age.  You may only have one Account.  
+
+By enrolling in AdSense, you permit Google to serve, as applicable, (i) advertisements and other content (“Ads”), (ii) Google search boxes and search results, and (iii) related search queries and other links to your websites, mobile applications, media players, mobile content, and/or other properties approved by Google (each individually a “Property”).  In addition, you grant Google the right to access, index and cache the Properties, or any portion thereof, including by automated means. Google may refuse to provide the Services to any Property.
+
+Any Property that is a software application and accesses our Services (a) may require preapproval by Google in writing, and (b) must comply with Google’s Software Principles.
+
+3.    Using our Services
+
+You may use our Services only as permitted by this Agreement and any applicable laws.  Don’t misuse our Services. For example, don’t interfere with our Services or try to access them using a method other than the interface and the instructions that we provide.
+
+You may discontinue your use of any Service at any time by removing the relevant code from your Properties.  
+
+4.    Changes to our Services; Changes to the Agreement
+
+We are constantly changing and improving our Services. We may add or remove functionalities or features of the Services at any time, and we may suspend or stop a Service altogether.
+
+We may modify the Agreement at any time. We’ll post any modifications to the AdSense Terms on this page and any modifications to the AdSense Program Policies or the Google Branding Guidelines on their respective pages.  Changes will not apply retroactively and generally will become effective 14 days after they are posted. However, changes addressing new functions for a Service or changes made for legal reasons will be effective immediately. If you don’t agree to any modified terms in the Agreement, you’ll have to stop using the affected Services.
+
+5.    Payments
+
+Subject to this Section 5 and Section 10 of these AdSense Terms, you will receive a payment related to the number of valid clicks on Ads displayed on your Properties, the number of valid impressions of Ads displayed on your Properties, or other valid events performed in connection with the display of Ads on your Properties, in each case as determined by Google.  
+
+Except in the event of termination, we will pay you by the end of the calendar month following any calendar month in which the earned balance in your Account equals or exceeds the applicable payment threshold.  If you implement search Services, our payments may be offset by any applicable fees for such Services.
+
+Unless expressly authorized in writing by Google, you may not enter into any type of arrangement with a third party where that third party receives payments made to you under the Agreement or other financial benefit in relation to the Services.
+
+Payments will be calculated solely based on our accounting. Payments to you may be withheld to reflect or adjusted to exclude any amounts refunded or credited to advertisers and any amounts arising from invalid activity, as determined by Google in its sole discretion.  Invalid activity is determined by Google in all cases and includes, but is not limited to, (i) spam, invalid queries, invalid impressions or invalid clicks on Ads generated by any person, bot, automated program or similar device, including through any clicks or impressions originating from your IP addresses or computers under your control; (ii) clicks solicited or impressions generated by payment of money, false representation, or requests for end users to click on Ads or take other actions; (iii) Ads served to end users whose browsers have JavaScript disabled; and (iv) clicks or impressions co-mingled with a significant amount of the activity described in (i, ii, and iii) above.  
+
+In addition to our other rights and remedies, we may (a) withhold and offset any payments owed to you under the Agreement against any fees you owe us under the Agreement or any other agreement, or (b) require you to refund us within 30 days of any invoice, any amounts we may have overpaid to you in prior periods.  If you dispute any payment made or withheld relating to the Services, you must notify Google in writing within 30 days of any such payment.  If you do not, any claim relating to the disputed payment is waived.  If an advertiser whose Ads are displayed on any Property defaults on payment to Google, we may withhold payment or charge back your account.
+
+To ensure proper payment, you are responsible for providing and maintaining accurate contact and payment information in your Account.  You are responsible for any charges assessed by your bank or payment provider.</p>
       </div>
-    </div>
 
 
     <ul class="pager">
-      <li class="previous">
-        <a href="#" style="margin-left:85px;">Previous</a>
-      </li>
-      <li class="next">
-        <a href="#" style="margin-right:85px;"> Next </a>
+      <li ng-click="show_all()">
+        <a href="#" style="margin-right:85px;"> Show All </a>
       </li>
     </ul>
 
 
-    <div class="footer" >        
-      <a href="#" style="color:white">Terms and Conditions</a>
-    </div>
 
     
   <script src="js/jquery.min.js"></script>
