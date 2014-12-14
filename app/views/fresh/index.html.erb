@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app = 'app'>
   <head>
-    <title>BootstrapCode</title>
+    <title>Freshly</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -33,16 +33,13 @@
 
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav" >
-
             <li class="active"><a href="#" ng-click="news_items('/news/random');" style="width:160px; text-align:center;">Home</a></li>
             <li class="dropdown" > 
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width:160px; text-align:center;">Categories 
-
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
                 <li ng-repeat="category in categories">
-
                   <a href="#" ng-click="news_items('/news/' + category);">{{category}}</a>
                 </li> 
               </ul>
@@ -50,7 +47,6 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-
             <% if user_signed_in? %>
               <li><div style="{text-color:'white'}" >Signed in as... <%= current_user.email %></div><li>
               <li>                  
@@ -82,19 +78,18 @@
       </div>
     </nav>
   
-    <div class="container" >
+    <div class="container">
       <div class="jumbotron">
         <img src="http://www.w3schools.com/bootstrap/cinqueterre.jpg" class="img-circle center-block" alt="Cinque Terre" width="304" height="180">
       </div>
 
-      <div class="row " ng-show="show_top_news" style="margin-left: 1px;">
-        <div class="col-md-3 col-xs-11 news " ng-repeat="news_show in news" >
+      <div class="row" ng-show ="show_items" style="margin-left: 1px;">
+        <div class="col-md-3 col-xs-11 news" ng-repeat="item in retrieve_news_items_to_show()">
           <div>
-            <a href="{{news_show.url}}">{{news_show.title}}</a>
+            <a href="{{item.url}}">{{item.title}}</a>
           </div>
-        </div> 
+        </div>
       </div>
-
 
       <div class="row" ng-hide="show_items" style="margin-left: 1px;">
         <div class="col-md-3 col-xs-11 news" ng-repeat="search_result in search_results">
@@ -103,7 +98,10 @@
           </div>
         </div>
       </div>
+
     </div>
+
+
     <ul class="pager" ng-click="news_items('/news/all')">
       <li>
         <div>
@@ -114,7 +112,7 @@
 
 
     <div class="footer" >        
-      <a href="html/searchResult.html" style="color:white">Terms and Conditions</a>
+      <a href="#" style="color:white">Terms and Conditions</a>
     </div>
 
     
