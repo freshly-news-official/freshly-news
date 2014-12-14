@@ -123,4 +123,16 @@ class FreshController < ActionController::Base
     @categories += ["random"]
     render json: @categories
   end
+
+  def edit
+    @user = current_user
+  end
+
+  def save_edit
+    user = params[:user]
+    preferences = user[:preferences]
+    User.find_by({:id => current_user[:id]}).update({:preferences => preferences})
+ 
+    redirect_to :action => :index
+  end
 end

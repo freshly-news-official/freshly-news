@@ -23,24 +23,23 @@
             </div>
         </div>
 
-         
+
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-                         
+          <span class="icon-bar"></span>                
         </button>        
 
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav" >
-            <li class="active"><a href="#" ng-click="news_items('/news/random');" style="width:160px; text-align:center;">Home</a></li>
+            <li class="active"><a ng-click="news_items('/news/random')" href="#" style="width:160px; text-align:center;">Home</a></li>
             <li class="dropdown" > 
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width:160px; text-align:center;">Categories 
+              <a class="dropdown-toggle dropdown:hover " data-toggle="dropdown" href="#" style="width:160px; text-align:center;color:white;">Categories 
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
                 <li ng-repeat="category in categories">
-                  <a href="#" ng-click="news_items('/news/' + category);">{{category}}</a>
+                  <a href="#" ng-click="news_items('/news/' + category)">{{category}}</a>
                 </li> 
               </ul>
             </li>           
@@ -48,29 +47,10 @@
 
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <li><div style="{text-color:'white'}" >Signed in as... <%= current_user.email %></div><li>
-              <li>                  
-                    <%= form_tag '/users/sign_out', :method => :get do %>
-                      <span class="glyphicon glyphicon-user"> 
-                      <%= submit_tag "Sign out", :class => "glyphicon glyphicon-user" %>
-                      </span>
-                    <% end %>
-              </li>
+            <li><a href="/users/sign_out" style="color:white;"><span class="glyphicon glyphicon-user"></span> Sign out</a></li>
             <% else %>
-              <li>
-                <%= form_tag '/users/sign_in', :method => :get do %>
-                    <span class="glyphicon glyphicon-user"> 
-                    <%= submit_tag "Sign in", class: "glyphicon glyphicon-user", :class => "glyphicon glyphicon-user" %>
-                    </span>
-                <% end %>
-              </li>
-              <li>
-                <%= form_tag '/users/sign_up', :method => :get, html: {class: "nifty_form"} do %>
-                    <span class="glyphicon glyphicon-user"> 
-                    <%= submit_tag "Sign up", :class => "glyphicon glyphicon-user" %>
-                    </span>
-                <% end %>
-              </li>
+              <li><a href="/users/sign_up" style="color:white;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="/users/sign_in" style="color:white;"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>
             <% end %>
           </ul>
 
@@ -78,17 +58,17 @@
       </div>
     </nav>
   
-    <div class="container">
+    <div class="container" >
       <div class="jumbotron">
         <img src="http://www.w3schools.com/bootstrap/cinqueterre.jpg" class="img-circle center-block" alt="Cinque Terre" width="304" height="180">
       </div>
 
-      <div class="row" ng-show ="show_items" style="margin-left: 1px;">
-        <div class="col-md-3 col-xs-11 news" ng-repeat="item in retrieve_news_items_to_show()">
+      <div class="row " ng-show="show_items" style="margin-left: 1px;">
+        <div class="col-md-3 col-xs-11 news " ng-repeat="news_show in retrieve_news_items_to_show()" >
           <div>
-            <a href="{{item.url}}">{{item.title}}</a>
+            <a href="{{news_show.url}}">{{news_show.title}}</a>
           </div>
-        </div>
+        </div> 
       </div>
 
       <div class="row" ng-hide="show_items" style="margin-left: 1px;">
@@ -98,21 +78,17 @@
           </div>
         </div>
       </div>
-
     </div>
 
-
-    <ul class="pager" ng-click="news_items('/news/all')">
-      <li>
-        <div>
-          <a href="#" style="margin-right:85px;"> Show All </a>
-      </div>
+    <ul class="pager">
+      <li ng-click="news_items('/news/all')">
+        <a href="#" style="margin-right:85px;"> Show All </a>
       </li>
     </ul>
 
 
     <div class="footer" >        
-      <a href="#" style="color:white">Terms and Conditions</a>
+      <a href="html/searchResult.html" style="color:white">Terms and Conditions</a>
     </div>
 
     

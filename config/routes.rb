@@ -8,4 +8,6 @@ Rails.application.routes.draw do
     get '/categories' => 'fresh#categories' 
     get '/top_news' => 'fresh#top_news'
     post '/like' => 'fresh#like'
+    get '/edit' => 'fresh#edit'
+    post '/save_edit' => 'fresh#save_edit'
 end
