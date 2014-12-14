@@ -14,7 +14,7 @@ app.controller('FreshlyController', ['$scope', '$http', function($scope, $http) 
         $scope.categories = data;
       })
       .error(function(data, status, headers, config) {
-        console.log("failed :(", failure);
+        console.log("failed :(");
      });
     
 
@@ -23,7 +23,7 @@ app.controller('FreshlyController', ['$scope', '$http', function($scope, $http) 
         $scope.news = data;
       })
       .error(function(data, status, headers, config) {
-        console.log("failed :(", failure);
+        console.log("failed :(");
      });
     
     $scope.search = function() {
@@ -33,8 +33,22 @@ app.controller('FreshlyController', ['$scope', '$http', function($scope, $http) 
         $scope.search_results = data;
       })
       .error(function(data, status, headers, config) {
-        console.log("failed :(", failure);
+        console.log("failed :(");
     });
+  };
+
+  $scope.show_home = function() {
+       /*/search este endpoint-ul definit de baieti*/
+     $http.get('/news/random')
+      .success(function(data, status, headers, config) {
+        $scope.news = data;
+        $scope.show_top_news = true;
+        $scope.show_all = false;
+        $scope.show_bool_category = false;
+      })
+      .error(function(data, status, headers, config) {
+        console.log("failed :(");
+     });
   };
 
   $scope.show_category = function(category) {
@@ -47,7 +61,7 @@ app.controller('FreshlyController', ['$scope', '$http', function($scope, $http) 
         $scope.show_all = false;
       })
       .error(function(data, status, headers, config) {
-        console.log("failed :(", failure);
+        console.log("failed :(");
     });
   };
 
@@ -62,7 +76,7 @@ app.controller('FreshlyController', ['$scope', '$http', function($scope, $http) 
 
       })
       .error(function(data, status, headers, config) {
-        console.log("failed :(", failure);
+        console.log("failed :(");
     });
   };
 
