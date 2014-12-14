@@ -48,6 +48,7 @@
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
             <li><a href="/users/sign_out" style="color:white;"><span class="glyphicon glyphicon-user"></span> Sign out</a></li>
+            <a href="/edit">Edit preferences</a>
             <% else %>
               <li><a href="/users/sign_up" style="color:white;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
               <li><a href="/users/sign_in" style="color:white;"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>
