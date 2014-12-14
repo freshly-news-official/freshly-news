@@ -66,13 +66,13 @@ class FreshController < ActionController::Base
 
       if (current_user != nil)
         preferences = User.find_by(:id => current_user[:id])[:preferences]
+        preferences = [] if preferences == nil
         preferred_categories = preferences.split(',')
       else
         preferred_categories = Category.uniq.pluck(:nume)
       end
 
       # modify here after growing database
-      showed_category = 0
       preferred_categories.each do |categorie|
         Category.where(:nume => categorie).each do |c|
           News.where(:category_id => c[:id]).order(:created_at, :views,
