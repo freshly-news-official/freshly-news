@@ -5,6 +5,8 @@ app.controller('FreshlyController', ['$scope', '$http', function($scope, $http) 
    $scope.news = [];
    $scope.categories = [];
    $scope.show_top_news = true;
+   $scope.show_all = false;
+   $scope.show_bool_category = false;
    $scope.news_category = [];
 
     $http.get('/categories')
@@ -35,17 +37,33 @@ app.controller('FreshlyController', ['$scope', '$http', function($scope, $http) 
     });
   };
 
-  $scope.show_categories = function(category) {
+  $scope.show_category = function(category) {
        /*/search este endpoint-ul definit de baieti*/
-    $http.get('/news/category')
+    $http.get('/news/' + category)
       .success(function(data, status, headers, config) {
         $scope.news_category = data;
+        $scope.show_bool_category = true;
         $scope.show_top_news = false;
+        $scope.show_all = false;
       })
       .error(function(data, status, headers, config) {
         console.log("failed :(", failure);
     });
   };
 
-  
+  $scope.show_all = function() {
+       /*/search este endpoint-ul definit de baieti*/
+    $http.get('/news/all')
+      .success(function(data, status, headers, config) {
+        $scope.news_all = data;
+        $scope.show_bool_category = false;
+        $scope.show_top_news = false;
+        $scope.show_all = true;
+
+      })
+      .error(function(data, status, headers, config) {
+        console.log("failed :(", failure);
+    });
+  };
+
 }]);
