@@ -60,7 +60,11 @@
     height: 40px;
     margin: 0px;
     border-radius: 0.3em;
-    position: relative;
 
 }
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+
+ }
 

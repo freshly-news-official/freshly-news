@@ -32,9 +32,9 @@
 
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav" >
-            <li class="active"><a href="#" style="width:160px; text-align:center;">Home</a></li>
+            <li class="active"><a ng-click="show_home()" href="#" style="width:160px; text-align:center;">Home</a></li>
             <li class="dropdown" > 
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="width:160px; text-align:center;">Categories 
+              <a class="dropdown-toggle dropdown:hover " data-toggle="dropdown" href="#" style="width:160px; text-align:center;color:white;">Categories 
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
@@ -44,12 +44,33 @@
               </ul>
             </li>           
           </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-          </ul>
-
+         <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li><div style="{text-color:'white'}" >Signed in as... <%= current_user.email %></div><li>
+              <li>                  
+                    <%= form_tag '/users/sign_out', :method => :get do %>
+                      <span class="glyphicon glyphicon-user"> 
+                      <%= submit_tag "Sign out", :class => "glyphicon glyphicon-user" %>
+                      </span>
+                    <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= form_tag '/users/sign_in', :method => :get do %>
+                    <span class="glyphicon glyphicon-user"> 
+                    <%= submit_tag "Sign in", class: "glyphicon glyphicon-user", :class => "glyphicon glyphicon-user" %>
+                    </span>
+                <% end %>
+              </li>
+              <li>
+                <%= form_tag '/users/sign_up', :method => :get, html: {class: "nifty_form"} do %>
+                    <span class="glyphicon glyphicon-user"> 
+                    <%= submit_tag "Sign up", :class => "glyphicon glyphicon-user" %>
+                    </span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>  
         </div>
       </div>
     </nav>
@@ -83,15 +104,20 @@
         </div>
       </div>
 
+      <div class="row" ng-show="show_search" style="margin-left: 1px;">
+        <div class="col-md-3 col-xs-11 news" ng-repeat="search_result in search_results">
+          <div>
+            <a href="{{search_result.url}}">{{search_result.title}}</a>
+          </div>
+        </div>
+      </div>
+
     </div>
 
 
     <ul class="pager">
-      <li class="previous">
-        <a href="#" style="margin-left:85px;">Previous</a>
-      </li>
-      <li class="next" ng-click="show_all()">
-        <a href="#" style="margin-right:85px;"> Next </a>
+      <li ng-click="show_all()">
+        <a href="#" style="margin-right:85px;"> Show All </a>
       </li>
     </ul>
 
