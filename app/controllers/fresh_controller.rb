@@ -38,7 +38,7 @@ class FreshController < ActionController::Base
       categories.each do |category|
         
         n = News.where({:category_id => category[:id]}).order(:created_at,
-                        :views, :rating)
+                        :views, :votes)
 
         if n != [] and n != nil then
                      n.each do |temp|
@@ -105,9 +105,6 @@ class FreshController < ActionController::Base
     render json: @news
   end
 
-  def like
-    
-  end
 
   def top_news
     @results = []
