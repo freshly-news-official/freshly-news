@@ -45,7 +45,8 @@ class FreshController < ActionController::Base
             news_item = {
                          :title => temp[:title], :description => temp[:description],
                          :views => temp[:views], :votes => temp[:votes],
-                         :news_category => category[:nume]
+                         :news_category => category[:nume],
+                         :tag_image => temp[:image_url]
                         }
             showed_news += 1
             @news.push(news_item)
@@ -79,7 +80,8 @@ class FreshController < ActionController::Base
           :votes).limit(MAX_NEWS_PER_CATEGORY).each do |item|
           @news.push({'title' => item.title, 'url' => item.url, 
                       'description' => item.description, 
-                      'news_category' => c[:nume]
+                      'news_category' => c[:nume],
+                      'tag_image' => item.image_url
                    })
             end
           end
@@ -93,7 +95,8 @@ class FreshController < ActionController::Base
         if category != [] and category != nil then
           @news.push({'title' => item.title, 'url' => item.url, 
                       'description' => item.description, 
-                      'news_category' => category[:nume]
+                      'news_category' => category[:nume],
+                      'tag_image' => item.image_url
                    })
         end
       end
