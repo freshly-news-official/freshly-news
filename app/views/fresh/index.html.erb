@@ -68,8 +68,8 @@
       <div class="row " ng-show="show_items" style="margin-left: 1px;">
         <div class="col-md-3 col-xs-11 news " ng-repeat="news_show in retrieve_news_items_to_show()" >
           <div>
-            <a href="{{news_show.url}}">{{news_show.title | limitTo : 50}}</a>
-            <img src="{{news_show.tag_image}}" style="width:100%">
+            <a href="{{news_show.url}}">{{news_show.title | limitTo : 35}}</a>
+            <img src="{{news_show.tag_image}}" style="width:100%; border:none;">
           </div>
         </div> 
       </div>
@@ -77,7 +77,9 @@
       <div class="row" ng-hide="show_items" style="margin-left: 1px;">
         <div class="col-md-3 col-xs-11 news" ng-repeat="search_result in search_results">
           <div>
-            <a href="{{search_result.url}}">{{search_result.title}}</a>
+            <a href="{{search_result.url}}">{{search_result.title | limitTo : 35}}</a>
+            <img src="{{search_result.tag_image}}" style="width:100%;
+            border:none;">
           </div>
         </div>
       </div>

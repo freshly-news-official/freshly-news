@@ -18,7 +18,8 @@ class FreshController < ActionController::Base
     News.where('title like ?', '%' + search_term + '%').each do |news|
       @results.push({'title' => news.title, 
                     'url' => news.url , 
-                    'description' => news.description})
+                    'description' => news.description,
+                    :tag_image => news.image_url})
     end
 
     render json: @results[0...MAX_NEWS]
