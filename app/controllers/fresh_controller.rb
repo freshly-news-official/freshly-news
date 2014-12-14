@@ -4,6 +4,7 @@ require 'json'
 class FreshController < ActionController::Base
 
   MAX_NEWS = 12
+  MAX_NEWS_PER_CATEGORY = 3
 
 	def index
 	end
@@ -62,8 +63,13 @@ class FreshController < ActionController::Base
     elsif news_category == "random" 
       showed_news = 0
 
+      if (current_user != nil)
+        preferences = User.find_by(:id => current_user[:id])[:preferences]
+        preferred_categories = preferences.split(',')
+      end
+
       # modify here after growing database
-      News.all.order(:views, :votes).each do |item|
+      News.all.order(:date, :views, :votes).each do |item|
         category = Category.find_by({:id => item[:category_id]})
         if category != [] and category != nil then
           showed_news += 1
