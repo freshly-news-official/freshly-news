@@ -3,6 +3,8 @@ require 'json'
 
 class FreshController < ActionController::Base
 
+  MAX_NEWS = 12
+
 	def index
 	end
 
@@ -18,12 +20,11 @@ class FreshController < ActionController::Base
                     'description' => news.description})
     end
 
-    render json: @results
+    render json: @results[0...MAX_NEWS]
   end 
 
 
   def news
-    max_news = 12
 
     news_category = params[:news_category].gsub(/[^a-zA-Z0-9 ]/, "")
 
@@ -70,7 +71,8 @@ class FreshController < ActionController::Base
 
     end
 
-    render json: @news
+    render json: @news[0...MAX_NEWS]
+
   end 
 
   def top_news
