@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214101845) do
+ActiveRecord::Schema.define(version: 20141214113930) do
 
   create_table "categories", force: true do |t|
     t.integer "website_id",            null: false
@@ -24,13 +24,15 @@ ActiveRecord::Schema.define(version: 20141214101845) do
   end
 
   create_table "news", force: true do |t|
-    t.text    "title",                   null: false
-    t.text    "description",             null: false
-    t.integer "category_id",             null: false
-    t.integer "views",       default: 0, null: false
-    t.integer "votes",       default: 0, null: false
-    t.text    "url",                     null: false
-    t.text    "content",                 null: false
+    t.text     "title",                   null: false
+    t.text     "description",             null: false
+    t.integer  "category_id",             null: false
+    t.integer  "views",       default: 0, null: false
+    t.integer  "votes",       default: 0, null: false
+    t.text     "url",                     null: false
+    t.text     "content",                 null: false
+    t.datetime "created_at"
+    t.text     "image_url"
   end
 
   create_table "news_old", force: true do |t|
