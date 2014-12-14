@@ -24,6 +24,9 @@ def working_url?(url, max_redirects=6)
 end
 
 class CrawlerController < ActionController::Base
+  #define the max number of news
+  MAX_NEWS = 50
+
   #get categories
   categories = Category.all.each
 
@@ -44,9 +47,12 @@ class CrawlerController < ActionController::Base
 
       #build the tag to search by
       tag = site[0].tag_name + '.' + site[0].tag_class
+  
+      #define the counter that counts iterated news
+      counter = 0
 
       #search the page
-      page.css(tag).to_set.to_a.each do |element| 
+      page.css(tag).to_set.to_a.each do |element|
         #if the news is not in the database, add it
         if not News.exists?(:url => element.attribute("href").to_s)
           #build the new title, description, category and url
@@ -63,6 +69,17 @@ class CrawlerController < ActionController::Base
             #create new entry in the database
             News.create(:title => new_title, :description => "...", :category_id => new_category, :views => 0, :votes => 0, :url => new_url, :content => new_content)
           end
+        else
+          #if the news is already in the database, break and proceed to next category
+          break
+        end
+
+        #increment the number of news iterated
+        counter = counter + 1
+
+        #verify if we reached the max number of news
+        if counter == MAX_NEWS
+          break
         end
       end
     end
