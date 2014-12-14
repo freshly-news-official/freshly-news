@@ -99,6 +99,9 @@ class FreshController < ActionController::Base
     render json: @news
   end
 
+  def like
+    
+  end
 
   def top_news
     @results = []

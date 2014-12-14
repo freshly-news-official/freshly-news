@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214113930) do
+ActiveRecord::Schema.define(version: 20141214124307) do
 
   create_table "categories", force: true do |t|
     t.integer "website_id",            null: false
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20141214113930) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "preferences"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
@@ -67,6 +68,7 @@ ActiveRecord::Schema.define(version: 20141214113930) do
     t.text   "url",                   null: false
     t.string "tag_name",  limit: 20,  null: false
     t.string "tag_class", limit: 100
+    t.string "tag_image"
   end
 
   add_index "websites", ["url"], name: "sqlite_autoindex_websites_1", unique: true
