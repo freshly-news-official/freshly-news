@@ -29,7 +29,7 @@ class FreshController < ActionController::Base
     news_category = params[:news_category].gsub(/[^a-zA-Z0-9 ]/, "")
 
     @news = []
-    if news_category != "random" then
+    if news_category != "random"  and news_category != "all" then
 
       showed_news = 0;
 
@@ -59,7 +59,7 @@ class FreshController < ActionController::Base
     
       @news.sort_by { |n| n[:views]} 
 
-    else
+    elsif news_category == "random" 
       showed_news = 0
 
       # modify here after growing database
@@ -75,10 +75,20 @@ class FreshController < ActionController::Base
           return
         end
       end
+    elsif news_category == "all"
+    
+      @news = []
+      News.all().order(:views, :votes).each do |item|
+        @news.push({'title' => item.title, 'url' => item.url, 
+                    'description' => item.description, 
+                    'news_category' => Category.find_by({:id => item[:category_id]})[:nume]
+                  })
+      end
 
+      render json: @news
+      return
     end
 
-    render json: @news
   end
 
 
