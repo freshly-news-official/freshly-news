@@ -47,6 +47,7 @@
 
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
+            <li><a href="#"><%= current_user[:email] %></a></li>
             <li><a href="/edit">Edit preferences</a></li>
             <li><a href="/users/sign_out" style="color:white;"><span class="glyphicon glyphicon-user"></span> Sign out</a></li>
             <% else %>
