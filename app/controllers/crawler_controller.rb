@@ -47,6 +47,11 @@ class CrawlerController < ActionController::Base
 
       #build the tag to search by
       tag = site[0].tag_name + '.' + site[0].tag_class
+      #build the tag to search the image
+      image_tag = site[0].tag_name + '.' + site[0].tag_image
+
+      #search for the images
+      images = page.css(image_tag).to_set.to_a
   
       #define the counter that counts iterated news
       counter = 0
@@ -61,13 +66,18 @@ class CrawlerController < ActionController::Base
           new_category = e.id.to_i
           new_url = element.attribute("href").to_s
 
+          new_image_url = nil
+          if images[counter] != nil
+            new_image_url = images[counter].attribute("src").to_s
+          end
+
           #verify if it's a valid url
           if working_url?(new_url)
             #get the page html content
             new_content = open(new_url, &:read)
 
             #create new entry in the database
-            News.create(:title => new_title, :description => "...", :category_id => new_category, :views => 0, :votes => 0, :url => new_url, :content => new_content)
+            News.create(:title => new_title, :description => "...", :category_id => new_category, :views => 0, :votes => 0, :url => new_url, :content => new_content, :image_url => new_image_url)
           end
         else
           #if the news is already in the database, break and proceed to next category
