@@ -32,14 +32,14 @@
 
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav" >
-            <li class="active"><a ng-click="show_home()" href="#" style="width:160px; text-align:center;">Home</a></li>
+            <li class="active"><a ng-click="show_home();" style="width:160px; text-align:center;">Home</a></li>
             <li class="dropdown" > 
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="width:160px; text-align:center;">Categories 
+              <a class="dropdown-toggle" data-toggle="dropdown" style="width:160px; text-align:center;">Categories 
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
                 <li ng-repeat="category in categories">
-                  <a href="#" ng-click="show_category(category); $event.preventDefault(); $event.stopPropagation();">{{category}}</a>
+                  <a ng-click="show_category(category);">{{category}}</a>
                 </li> 
               </ul>
             </li>           
@@ -76,7 +76,7 @@
       </div>
 
       <div class="row" ng-show="show_all" style="margin-left: 1px;">
-        <div class="col-md-3 col-xs-11 news" ng-repeat="news_elem_all in news_all">
+        <div class="col-md-3 col-xs-11 news" ng-repeat="news_elem_all in retrieve_news_all()">
           <div>
             <a href="{{news_elem_all.url}}">{{news_elem_all.title}}</a>
           </div>
@@ -95,14 +95,14 @@
 
 
     <ul class="pager">
-      <li ng-click="show_all()">
-        <a href="#" style="margin-right:85px;"> Show All </a>
+      <li >
+        <a style="margin-right:85px;" ng-click="show_all();"> Show All </a>
       </li>
     </ul>
 
 
     <div class="footer" >        
-      <a href="#" style="color:white">Terms and Conditions</a>
+      <a style="color:white">Terms and Conditions</a>
     </div>
 
     
