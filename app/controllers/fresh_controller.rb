@@ -3,6 +3,8 @@ require 'json'
 
 class FreshController < ActionController::Base
 
+  MAX_NEWS = 12
+
 	def index
 	end
 
@@ -18,60 +20,77 @@ class FreshController < ActionController::Base
                     'description' => news.description})
     end
 
-    render json: @results
+    render json: @results[0...MAX_NEWS]
   end 
 
 
   def news
-    max_news = 12
 
     news_category = params[:news_category].gsub(/[^a-zA-Z0-9 ]/, "")
 
     @news = []
-    if news_category != "random" then
+    if news_category != "random"  and news_category != "all" then
 
       showed_news = 0;
 
-      categories_ids = Category.where({:nume => news_category})
-      categories_ids.each do |id|
+      categories = Category.where({:nume => news_category})
+      categories.each do |category|
         
-        n = News.where({:category_id => id})
+        n = News.where({:category_id => category[:id]})
 
         if n != [] then
-          showed_news += 1
 
           n.each do |temp|
             news_item = {:title => temp[:title], :description => temp[:description],
-                        :views => temp[:views], :votes => temp[:votes]}
-            @news.push(news_item)
-          end
+                         :views => temp[:views], :votes => temp[:votes],
+                         :news_category => category[:nume]
+                        }
+            showed_news += 1
 
-          if (showed_news == max_news)
-            break
-          end
+            @news.push(news_item)
+            if (showed_news == MAX_NEWS)
+              render json: @news
+              return
+            end
+
+          end          
         end
       end
     
       @news.sort_by { |n| n[:views]} 
 
-    else
+    elsif news_category == "random" 
       showed_news = 0
 
       # modify here after growing database
       News.all.order(:views, :votes).each do |item|
         showed_news += 1
         @news.push({'title' => item.title, 'url' => item.url, 
-                    'description' => item.description})
+                    'description' => item.description, 
+                    'news_category' => Category.find_by({:id => item[:category_id]})[:nume]
+                  })
 
-        if (showed_news == max_news)
-          break
+        if (showed_news == MAX_NEWS)
+          render json: @news
+          return
         end
       end
+    elsif news_category == "all"
+    
+      @news = []
+      News.all().order(:views, :votes).each do |item|
+        @news.push({'title' => item.title, 'url' => item.url, 
+                    'description' => item.description, 
+                    'news_category' => Category.find_by({:id => item[:category_id]})[:nume]
+                  })
+      end
 
+      render json: @news
+      return
     end
 
-    render json: @news
-  end 
+  end
+
 
   def top_news
     @results = []

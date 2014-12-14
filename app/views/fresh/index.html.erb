@@ -4,7 +4,7 @@
     <title>BootstrapCode</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="application.css">
   </head>
 
@@ -13,31 +13,34 @@
 
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
-        <div class="navbar-header">
 
-         <div class="inner-addon left-addon menu">
-             <i class="glyphicon glyphicon-search"></i>
+        <div class="navbar-header">        
+            <div class="inner-addon left-addon menu">
+              <i class="glyphicon glyphicon-search"></i>
               <form ng-submit="search()">
-               <input type="text" ng-model="search_term" class="form-control" placeholder = "Search" />
-             </form>
-          </div>
+                  <input type="text" ng-model="search_term" class="form-control" placeholder = "Search" />
+              </form>
+            </div>
         </div>
 
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
-          </button>        
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                
+        </button>        
 
         <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories <span class="caret"></span></a>
+          <ul class="nav navbar-nav" >
+            <li class="active"><a href="#" style="width:160px; text-align:center;">Home</a></li>
+            <li class="dropdown" > 
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="width:160px; text-align:center;">Categories 
+                <span class="caret"></span>
+              </a>
               <ul class="dropdown-menu">
                 <li ng-repeat="category in categories">
                   <a href="#" ng-click="show_category(category); $event.preventDefault(); $event.stopPropagation();">{{category}}</a>
-                </li>
-                
+                </li> 
               </ul>
             </li>           
           </ul>
@@ -49,44 +52,59 @@
 
         </div>
       </div>
-
     </nav>
   
     <div class="container">
-       <div class="jumbotron">
-           <h1>My first Bootstrap website!</h1>      
-           <p>This page will grow as we add more and more components from Bootstrap...</p>      
-        </div>
+      <div class="jumbotron">
+        <img src="http://www.w3schools.com/bootstrap/cinqueterre.jpg" class="img-circle center-block" alt="Cinque Terre" width="304" height="180">
+      </div>
 
-         <div class="row" ng-show="show_top_news">
-               <div class="col-md-3 news" ng-repeat="news_show in news">
-                       
-                       <div>
-                           <a href="{{news_show.url}}">{{news_show.title}}</a>
-                       </div>
-                           
-                       <div class="clearfix visible-lg"></div>
-               </div>
-           </div>
-           <div class="row" ng-hide="show_top_news">
-               <div class="col-md-3 news" ng-repeat="news_category_show in news_category">
-                       
-                       <div>
-                           <a href="{{news_category_show.url}}">{{news_category_show.title}}</a>
-                       </div>
-                           
-                       <div class="clearfix visible-lg"></div>
-               </div>
-           </div>
+      <div class="row" ng-show="show_top_news" style="margin-left: 1px;">
+        <div class="col-md-3 col-xs-11 news" ng-repeat="news_show in news">
+          <div>
+            <a href="{{news_show.url}}">{{news_show.title}}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" ng-show="show_bool_category" style="margin-left: 1px;">
+        <div class="col-md-3 col-xs-11 news" ng-repeat="news_category_show in news_category">
+          <div>
+            <a href="{{news_category_show.url}}">{{news_category_show.title}}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" ng-show="show_all" style="margin-left: 1px;">
+        <div class="col-md-3 col-xs-11 news" ng-repeat="news_elem_all in news_all">
+          <div>
+            <a href="{{news_elem_all.url}}">{{news_elem_all.title}}</a>
+          </div>
+        </div>
+      </div>
+
     </div>
-                 <div class="footer">        
-                    <h3>City Gallery</h3>
-                 </div>
+
+
+    <ul class="pager">
+      <li class="previous">
+        <a href="#" style="margin-left:85px;">Previous</a>
+      </li>
+      <li class="next" ng-click="show_all()">
+        <a href="#" style="margin-right:85px;"> Next </a>
+      </li>
+    </ul>
+
+
+    <div class="footer" >        
+      <a href="#" style="color:white">Terms and Conditions</a>
+    </div>
 
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="http://dserban.github.io/js/angularjs/angular.js"></script>
-    <script src="app.js"></script>
-  </body>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/angular.js"></script>
+  <script src="app.js"></script>
+
+</body>
 </html>
