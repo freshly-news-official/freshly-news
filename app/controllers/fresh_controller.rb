@@ -60,8 +60,9 @@ class FreshController < ActionController::Base
       @news.sort_by { |n| n[:views]} 
 
     elsif news_category == "random" 
+      
+ 
       showed_news = 0
-
       # modify here after growing database
       News.all.order(:views, :votes).each do |item|
         category = Category.find_by({:id => item[:category_id]})

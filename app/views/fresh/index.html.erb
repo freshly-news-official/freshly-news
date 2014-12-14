@@ -44,12 +44,33 @@
               </ul>
             </li>           
           </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-          </ul>
-
+         <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li><div style="{text-color:'white'}" >Signed in as... <%= current_user.email %></div><li>
+              <li>                  
+                    <%= form_tag '/users/sign_out', :method => :get do %>
+                      <span class="glyphicon glyphicon-user"> 
+                      <%= submit_tag "Sign out", :class => "glyphicon glyphicon-user" %>
+                      </span>
+                    <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= form_tag '/users/sign_in', :method => :get do %>
+                    <span class="glyphicon glyphicon-user"> 
+                    <%= submit_tag "Sign in", class: "glyphicon glyphicon-user", :class => "glyphicon glyphicon-user" %>
+                    </span>
+                <% end %>
+              </li>
+              <li>
+                <%= form_tag '/users/sign_up', :method => :get, html: {class: "nifty_form"} do %>
+                    <span class="glyphicon glyphicon-user"> 
+                    <%= submit_tag "Sign up", :class => "glyphicon glyphicon-user" %>
+                    </span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>  
         </div>
       </div>
     </nav>
