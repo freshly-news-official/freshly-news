@@ -43,7 +43,7 @@ class CrawlerController < ActionController::Base
       puts Net::HTTP.get_response(URI.parse(e.url)).code
 
       #get the tag name and class name of the current site
-      site = Website.all.select{|element| element.id == e.site_id}
+      site = Website.all.select{|element| element.id == e.website_id}
 
       #build the tag to search by
       tag = site[0].tag_name + '.' + site[0].tag_class
