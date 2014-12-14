@@ -33,23 +33,27 @@ class FreshController < ActionController::Base
 
       showed_news = 0;
 
-      categories_ids = Category.where({:nume => news_category})
-      categories_ids.each do |id|
+      categories = Category.where({:nume => news_category})
+      categories.each do |category|
         
-        n = News.where({:category_id => id})
+        n = News.where({:category_id => category[:id]})
 
         if n != [] then
-          showed_news += 1
 
           n.each do |temp|
             news_item = {:title => temp[:title], :description => temp[:description],
-                        :views => temp[:views], :votes => temp[:votes]}
-            @news.push(news_item)
-          end
+                         :views => temp[:views], :votes => temp[:votes],
+                         :news_category => category[:nume]
+                        }
+            showed_news += 1
 
-          if (showed_news == max_news)
-            break
-          end
+            @news.push(news_item)
+            if (showed_news == MAX_NEWS)
+              render json: @news
+              return
+            end
+
+          end          
         end
       end
     
@@ -62,18 +66,21 @@ class FreshController < ActionController::Base
       News.all.order(:views, :votes).each do |item|
         showed_news += 1
         @news.push({'title' => item.title, 'url' => item.url, 
-                    'description' => item.description})
+                    'description' => item.description, 
+                    'news_category' => Category.find_by({:id => item[:category_id]})[:nume]
+                  })
 
-        if (showed_news == max_news)
-          break
+        if (showed_news == MAX_NEWS)
+          render json: @news
+          return
         end
       end
 
     end
 
-    render json: @news[0...MAX_NEWS]
+    render json: @news
+  end
 
-  end 
 
   def top_news
     @results = []
